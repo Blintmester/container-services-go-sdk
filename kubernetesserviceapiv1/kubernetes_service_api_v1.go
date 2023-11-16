@@ -9766,6 +9766,9 @@ func (kubernetesServiceApi *KubernetesServiceApiV1) CreateSatelliteClusterWithCo
 	if createSatelliteClusterOptions.InfrastructureTopology != nil {
 		body["infrastructureTopology"] = createSatelliteClusterOptions.InfrastructureTopology
 	}
+	if createSatelliteClusterOptions.CalicoIPAutodetectionMethods != nil {
+		body["calicoIPAutodetection"] = createSatelliteClusterOptions.CalicoIPAutodetectionMethods
+	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
 		return
@@ -10419,6 +10422,12 @@ func (kubernetesServiceApi *KubernetesServiceApiV1) CreateSatelliteLocationWithC
 	}
 	if createSatelliteLocationOptions.Zones != nil {
 		body["zones"] = createSatelliteLocationOptions.Zones
+	}
+	if createSatelliteLocationOptions.PodSubnet != nil {
+		body["multishiftPodSubnet"] = createSatelliteLocationOptions.PodSubnet
+	}
+	if createSatelliteLocationOptions.ServiceSubnet != nil {
+		body["multishiftServiceSubnet"] = createSatelliteLocationOptions.ServiceSubnet
 	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
@@ -20247,8 +20256,8 @@ type CreateSatelliteClusterOptions struct {
 	// User provided value for single node option.
 	InfrastructureTopology *string
 
-	// The method how the node network interface is selected for the internal pod network.
-    PodNetworkInterfaceSelection map[string]string
+	// Set IP autodetection to use correct interface for Calico
+	CalicoIPAutodetectionMethods map[string]string
 }
 
 // NewCreateSatelliteClusterOptions : Instantiate CreateSatelliteClusterOptions
@@ -20351,6 +20360,12 @@ func (options *CreateSatelliteClusterOptions) SetHeaders(param map[string]string
 func (options *CreateSatelliteClusterOptions) SetPodNetworkInterfaceSelection(podNetworkInterfaceSelection map[string]string) *CreateSatelliteClusterOptions {
     options.PodNetworkInterfaceSelection = podNetworkInterfaceSelection
     return options
+}
+
+// SetCalicoIPAutodetectionMethods : Set IP autodetection to use correct interface for Calico
+func (options *CreateSatelliteClusterOptions) SetCalicoIPAutodetectionMethods(calicoIPAutodetectionMethods map[string]string) *CreateSatelliteClusterOptions {
+	options.CalicoIPAutodetectionMethods = calicoIPAutodetectionMethods
+	return options
 }
 
 // CreateSatelliteClusterRemoteOptions : The CreateSatelliteClusterRemote options.
