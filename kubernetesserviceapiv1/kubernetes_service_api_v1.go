@@ -20355,13 +20355,6 @@ func (options *CreateSatelliteClusterOptions) SetHeaders(param map[string]string
 	return options
 }
 
-
-// SetPodNetworkInterfaceSelection : Allow user to set PodNetworkInterfaceSelection
-func (options *CreateSatelliteClusterOptions) SetPodNetworkInterfaceSelection(podNetworkInterfaceSelection map[string]string) *CreateSatelliteClusterOptions {
-    options.PodNetworkInterfaceSelection = podNetworkInterfaceSelection
-    return options
-}
-
 // SetCalicoIPAutodetectionMethods : Set IP autodetection to use correct interface for Calico
 func (options *CreateSatelliteClusterOptions) SetCalicoIPAutodetectionMethods(calicoIPAutodetectionMethods map[string]string) *CreateSatelliteClusterOptions {
 	options.CalicoIPAutodetectionMethods = calicoIPAutodetectionMethods
