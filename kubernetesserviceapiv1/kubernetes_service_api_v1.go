@@ -4306,6 +4306,9 @@ func (kubernetesServiceApi *KubernetesServiceApiV1) CreateClusterWithContext(ctx
 	if createClusterOptions.WorkerNum != nil {
 		body["workerNum"] = createClusterOptions.WorkerNum
 	}
+	if createClusterOptions.ClusterSecurityGroups != nil {
+		body["securityGroupIDs"] = createClusterOptions.ClusterSecurityGroups
+	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
 		return
